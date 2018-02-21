@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>Star Wars Universe Planets</h1>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Diameter</th>
+            <th>Climate</th>
+            <th>Terrain</th>
+            <th>Surface water percentage</th>
+            <th>Population</th>
+        </tr>
+        {% for data in result %}
+            <tr>
+                <td>{{ data.name }}</td>
+                <td>{{ data.diameter }}</td>
+                <td>{{ data.climate }}</td>
+                <td>{{ data.terrain }}</td>
+                {% if data.surface_water != 'unknown' %}
+                    <td>{{ data.surface_water }}%</td>
+                {% else %}
+                    <td>{{ data.surface_water }}</td>
+                {% endif %}
+                {% if data.population != 'unknown' %}
+                    <td>{{ data.population }} people</td>
+                {% else %}
+                    <td>{{ data.population }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+
+    </table>
+
+{% endblock %}
