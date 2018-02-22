@@ -1,3 +1,34 @@
-#navBarText {
+/*#navBarText {
     color: yellow;
+}*/
+
+#headerOne {
+    color: yellow;
+    font-weight: bolder;
+}
+
+#signIn {
+    color: white;
+}
+
+body {
+    background-image: url('/static/SWBG.png')
+}
+
+#userName {
+    color: green;
+    font-weight: bolder;
+}
+
+#navBarText, .tableData, .tableHeader {
+    color: yellow;
+}
+
+#planetsTable {
+    position: relative;
+    padding: 10px 10px 10px 10px;
+}
+
+#pageSwap {
+    margin-bottom: 15px;
 }

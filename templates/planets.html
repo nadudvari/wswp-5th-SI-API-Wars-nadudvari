@@ -1,19 +1,37 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <h1>Star Wars Universe Planets</h1>
-    <table class="table">
-        <tr>
+    <h1 id="headerOne">Star Wars Universe Planets</h1>
+    <div id="pageSwap">
+        {% if number == 1 %}
+            <button type="button" class="btn btn-danger btn-sm disabled" aria-disabled="true" id="previousPage">Previous page</button>
+            <a href="/planets/{{ number + 1 }}" class="btn btn-success btn-sm" role="button">Next page</a>
+        {% elif number > 1 and number < 7 %}
+            <a href="/planets/{{ number - 1 }}" class="btn btn-danger btn-sm" role="button">Previous page</a>
+            <a href="/planets/{{ number + 1 }}" class="btn btn-success btn-sm" role="button">Next page</a>
+        {% else %}
+            <a href="/planets/{{ number - 1 }}" class="btn btn-danger btn-sm" role="button">Previous page</a>
+            <button type="button" class="btn btn-success btn-sm disabled" aria-disabled="true" id="nextPage" >Next page</button>
+        {% endif %}
+    </div>
+    <table class="table-bordered table-responsive" id="planetsTable">
+        <tr class="tableHeader">
             <th>Name</th>
             <th>Diameter</th>
             <th>Climate</th>
             <th>Terrain</th>
             <th>Surface water percentage</th>
             <th>Population</th>
+            <th>Residents</th>
+            <th> </th>
         </tr>
         {% for data in result %}
-            <tr>
+            <tr class="tableData">
                 <td>{{ data.name }}</td>
-                <td>{{ data.diameter }}</td>
+                {% if data.diameter == 'unknown' %}
+                    <td>{{ data.diameter }}</td>
+                {% else %}
+                    <td>{{ data.diameter }} km</td>
+                {% endif %}
                 <td>{{ data.climate }}</td>
                 <td>{{ data.terrain }}</td>
                 {% if data.surface_water != 'unknown' %}
@@ -26,9 +44,14 @@
                 {% else %}
                     <td>{{ data.population }}</td>
                 {% endif %}
+                <td class="residentsData">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#residentsModal">
+                        Residents
+                    </button>
+                </td>
+                <td><button type="button" class="btn btn-info btn-sm">Vote</button></td>
             </tr>
         {% endfor %}
-
     </table>
 
 {% endblock %}

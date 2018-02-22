@@ -9,23 +9,25 @@ app.secret_key = 'whatever'
 
 
 @app.route('/')
-@app.route('/planets', METHODS=['GET', 'POST'])
+@app.route('/planets')
 def planets_first_page():
+    number = 1
     response = requests.get('https://swapi.co/api/planets/').json()
     result = response['results']
 
-    return render_template('planets.html', result=result)
+    return render_template('planets.html', result=result, number=number)
 
 
-@app.route('/planets/<number>', METHODS=['GET', 'POST'])
-def planets_first_page(number):
-    response = requests.get('https://swapi.co/api/planets/?page=' + number).json()
+@app.route('/planets/<number>')
+def planets_pages(number):
+    response = requests.get("https://swapi.co/api/planets/?page=" + number).json()
     result = response['results']
+    number = int(number)
 
-    return render_template('planets.html', result=result)
+    return render_template('planets.html', result=result, number=number)
 
 
-@app.route('/registration', METHODS=['GET', 'POST'])
+@app.route('/registration', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         user = data_manager.check_user(request.form['register_user_name'])
