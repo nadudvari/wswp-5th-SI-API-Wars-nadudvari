@@ -14,7 +14,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"
             defer></script>
     <script src="{{ url_for('static', filename='main.js') }}" defer></script>
-    <script src="{{ url_for('static', filename='data_handler.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='data_handler.js') }}"></script>
 
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="{{ url_for('static', filename='MilleniumFalcon.ico') }}"/>
@@ -23,7 +23,7 @@
 </head>
 {% include '_navBar.html' %}
 <body>
-{% include 'modal.html' %}
+{% include '_modal.html' %}
 {% block content %} {% endblock %}
 </body>
 </html>

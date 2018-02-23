@@ -2,13 +2,13 @@
 {% block content %}
 <form action="{{ url_for('login') }}" method="POST">
     <li>
-        <label for="user_name">Login name:</label>
+        <label for="user_name" id="logText">Login name:</label>
     </li>
     <li>
         <input type="text" id="user_name" name="user_name" class="login-input">
     </li>
     <li>
-        <label for="password">Password:</label>
+        <label for="password" id="logText">Password:</label>
     </li>
     <li>
         <input type="password" id="password" name="password" class="login-input">

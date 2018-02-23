@@ -30,25 +30,27 @@
                 {% if data.diameter == 'unknown' %}
                     <td>{{ data.diameter }}</td>
                 {% else %}
-                    <td>{{ data.diameter }} km</td>
+                    <td class="numbers">{{ data.diameter }} km</td>
                 {% endif %}
                 <td>{{ data.climate }}</td>
                 <td>{{ data.terrain }}</td>
-                {% if data.surface_water != 'unknown' %}
-                    <td>{{ data.surface_water }}%</td>
-                {% else %}
+                {% if data.surface_water == 'unknown' %}
                     <td>{{ data.surface_water }}</td>
-                {% endif %}
-                {% if data.population != 'unknown' %}
-                    <td>{{ data.population }} people</td>
                 {% else %}
-                    <td>{{ data.population }}</td>
+                    <td>{{ data.surface_water }}%</td>
                 {% endif %}
-                <td class="residentsData">
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#residentsModal">
-                        Residents
-                    </button>
-                </td>
+                {% if data.population == 'unknown' %}
+                    <td>{{ data.population }}</td>
+                {% else %}
+                    <td class="numbers">{{ data.population }} people</td>
+                {% endif %}
+                {% if data.residents == [] %}
+                    <td>No known residents</td>
+                {% else %}
+                    <td class="residentsData" data-residents="{{ data.residents }}">
+                        <a data-toggle="modal" href="#residentsModal" class="btn btn-default btn-lg residentsModal">Launch demo modal</a>
+                    </td>
+                {% endif %}
                 <td><button type="button" class="btn btn-info btn-sm">Vote</button></td>
             </tr>
         {% endfor %}

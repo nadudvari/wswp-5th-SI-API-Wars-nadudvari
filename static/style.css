@@ -20,7 +20,7 @@ body {
     font-weight: bolder;
 }
 
-#navBarText, .tableData, .tableHeader {
+#logText, #navBarText, .tableData, .tableHeader {
     color: yellow;
 }
 
