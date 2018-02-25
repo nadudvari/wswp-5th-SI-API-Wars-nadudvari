@@ -1,40 +1,44 @@
 
-$(document).ready( function () {
-    console.log('ready')
-});
 
-let incomingData = $('.residentsData').attr('data-residents');
-console.log(incomingData);
+let main = {
 
+    init: function () {
+        $(document).ready( function () {
+            main.buttonsEventHandler();
+        });
+    },
 
-let residentModal = $('.residentsModal');
-
-
-residentModal.click(residentsModalFill());
-
-
-function residentsModalFill () {
-    for (let i = 0; i < incomingData.length; i++){
-        console.log(incomingData[i]);
-        $.getJSON(incomingData[i], function(datas){
-            $.each(datas.results, function(i, data){
-                    $('.residentsModal').append('<tr><td>' + data.name + '</td>' +
-                        '<td>' + data.height + '</td>' +
-                        '<td>' + data.mass + '</td>' +
-                        '<td>' + data.skin_color + '</td>' +
-                        '<td>' + data.hair_color + '</td>' +
-                        '<td>' + data.eye_color + '</td>' +
-                        '<td>' + data.birth_year + '</td>' +
-                        '<td>' + data.gender + '</td></tr>'
-                        );
-                    })
-            });
-
+    loadResidentsTable: function  (residents) {
+        $('.residentsModalBody').html('');
+        for (let resident of residents) {
+            $.getJSON(resident, function (info) {
+                    $('.residentsModalBody').append('<tr><td>' + info.name + '</td>' +
+                        '<td>' + info.height + '</td>' +
+                        '<td>' + info.mass + '</td>' +
+                        '<td>' + info.skin_color + '</td>' +
+                        '<td>' + info.hair_color + '</td>' +
+                        '<td>' + info.eye_color + '</td>' +
+                        '<td>' + info.birth_year + '</td>' +
+                        '<td>' + info.gender + '</td></tr>'
+                    );
+            })
         }
+    },
+
+    buttonsEventHandler: function  () {
+        $('.residentsModal').click( function() {
+            $('#residentsModal').modal('show');
+            let planetUrl = $(this).attr('data-residents');
+            $('#residentsModal').data('planet-url', planetUrl);
+            $.getJSON(planetUrl, function(datas){
+                main.loadResidentsTable(datas.residents);
+            })
+        })
     }
 
 
+};
 
-
+main.init();
 
 

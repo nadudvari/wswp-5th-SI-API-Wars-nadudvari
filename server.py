@@ -22,6 +22,7 @@ def planets_first_page():
 def planets_pages(number):
     response = requests.get("https://swapi.co/api/planets/?page=" + number).json()
     result = response['results']
+    "resident_number = len(result['residents'])"
     number = int(number)
 
     return render_template('planets.html', result=result, number=number)

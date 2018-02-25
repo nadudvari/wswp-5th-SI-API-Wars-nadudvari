@@ -47,8 +47,8 @@
                 {% if data.residents == [] %}
                     <td>No known residents</td>
                 {% else %}
-                    <td class="residentsData" data-residents="{{ data.residents }}">
-                        <a data-toggle="modal" href="#residentsModal" class="btn btn-default btn-lg residentsModal">Launch demo modal</a>
+                    <td class="residentsData">
+                        <a class="btn btn-default btn-lg residentsModal" data-residents="{{ data.url }}">{{ data.residents|length }} resident(s)</a>
                     </td>
                 {% endif %}
                 <td><button type="button" class="btn btn-info btn-sm">Vote</button></td>
@@ -57,3 +57,4 @@
     </table>
 
 {% endblock %}
+<a data-toggle="modal" href="#residentsModal" class="btn btn-default btn-lg residentsModal">Launch demo modal</a>
