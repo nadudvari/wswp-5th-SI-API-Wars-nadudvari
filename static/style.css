@@ -12,7 +12,8 @@
 }
 
 body {
-    background-image: url('/static/SWBG.png')
+    background-image: url('/static/SWBG.png');
+    background-size: cover;
 }
 
 #userName {
@@ -24,11 +25,39 @@ body {
     color: yellow;
 }
 
-#planetsTable {
-    position: relative;
-    padding: 10px 10px 10px 10px;
-}
-
 #pageSwap {
     margin-bottom: 15px;
+}
+
+.planetsTable {
+    width: 100%;
+}
+
+#modalText {
+    text-decoration: underline;
+}
+
+.btn.sharp {
+  border-radius:0;
+}
+
+.btn.outline {
+	background: none;
+    padding: 5px 10px;
+}
+
+.btn-default.outline {
+	border: 2px solid orange;
+	color: orange;
+}
+
+.btn-default.outline:hover, .btn-default.outline:focus, .btn-default.outline:active, .btn-default.outline.active, .open > .dropdown-toggle.btn-default {
+	color: yellow;
+	border-color: yellow;
+}
+
+.btn-default.outline:active, .btn-default.outline.active {
+	border-color: yellow;
+	color: yellow;
+	box-shadow: none;
 }

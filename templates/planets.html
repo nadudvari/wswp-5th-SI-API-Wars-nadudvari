@@ -3,58 +3,67 @@
     <h1 id="headerOne">Star Wars Universe Planets</h1>
     <div id="pageSwap">
         {% if number == 1 %}
-            <button type="button" class="btn btn-danger btn-sm disabled" aria-disabled="true" id="previousPage">Previous page</button>
+            <button type="button" class="btn btn-danger btn-sm disabled" aria-disabled="true" id="previousPage">Previous
+                page
+            </button>
             <a href="/planets/{{ number + 1 }}" class="btn btn-success btn-sm" role="button">Next page</a>
         {% elif number > 1 and number < 7 %}
             <a href="/planets/{{ number - 1 }}" class="btn btn-danger btn-sm" role="button">Previous page</a>
             <a href="/planets/{{ number + 1 }}" class="btn btn-success btn-sm" role="button">Next page</a>
         {% else %}
             <a href="/planets/{{ number - 1 }}" class="btn btn-danger btn-sm" role="button">Previous page</a>
-            <button type="button" class="btn btn-success btn-sm disabled" aria-disabled="true" id="nextPage" >Next page</button>
+            <button type="button" class="btn btn-success btn-sm disabled" aria-disabled="true" id="nextPage">Next page
+            </button>
         {% endif %}
     </div>
-    <table class="table-bordered table-responsive" id="planetsTable">
-        <tr class="tableHeader">
-            <th>Name</th>
-            <th>Diameter</th>
-            <th>Climate</th>
-            <th>Terrain</th>
-            <th>Surface water percentage</th>
-            <th>Population</th>
-            <th>Residents</th>
-            <th> </th>
-        </tr>
-        {% for data in result %}
-            <tr class="tableData">
-                <td>{{ data.name }}</td>
-                {% if data.diameter == 'unknown' %}
-                    <td>{{ data.diameter }}</td>
-                {% else %}
-                    <td class="numbers">{{ data.diameter }} km</td>
-                {% endif %}
-                <td>{{ data.climate }}</td>
-                <td>{{ data.terrain }}</td>
-                {% if data.surface_water == 'unknown' %}
-                    <td>{{ data.surface_water }}</td>
-                {% else %}
-                    <td>{{ data.surface_water }}%</td>
-                {% endif %}
-                {% if data.population == 'unknown' %}
-                    <td>{{ data.population }}</td>
-                {% else %}
-                    <td class="numbers">{{ data.population }} people</td>
-                {% endif %}
-                {% if data.residents == [] %}
-                    <td>No known residents</td>
-                {% else %}
-                    <td class="residentsData">
-                        <a class="btn btn-default btn-lg residentsModal" data-residents="{{ data.url }}">{{ data.residents|length }} resident(s)</a>
-                    </td>
-                {% endif %}
-                <td><button type="button" class="btn btn-info btn-sm">Vote</button></td>
+    <div class="container-fluid col-lg">
+        <table class="table-bordered planetsTable">
+            <tr class="tableHeader">
+                <th>Name</th>
+                <th>Diameter</th>
+                <th>Climate</th>
+                <th>Terrain</th>
+                <th>Surface water percentage</th>
+                <th>Population</th>
+                <th>Residents</th>
+                <th> </th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for data in result %}
+                <tr class="tableData">
+                    <td>{{ data.name }}</td>
+                    {% if data.diameter == 'unknown' %}
+                        <td>{{ data.diameter }}</td>
+                    {% else %}
+                        <td class="numbers">{{ data.diameter }} km</td>
+                    {% endif %}
+                    <td>{{ data.climate }}</td>
+                    <td>{{ data.terrain }}</td>
+                    {% if data.surface_water == 'unknown' %}
+                        <td>{{ data.surface_water }}</td>
+                    {% else %}
+                        <td>{{ data.surface_water }}%</td>
+                    {% endif %}
+                    {% if data.population == 'unknown' %}
+                        <td>{{ data.population }}</td>
+                    {% else %}
+                        <td class="numbers">{{ data.population }} people</td>
+                    {% endif %}
+                    {% if data.residents == [] %}
+                        <td>No known residents</td>
+                    {% else %}
+                        <td class="residentsData">
+                            <a class="btn btn-default btn-sm btn-block residentsModal sharp outline" id="modalText" data-residents="{{ data.url }}" role="button">
+                                {{ data.residents|length }} resident(s)
+                            </a>
+                        </td>
+                    {% endif %}
+                    <td>
+                        <button type="button" class="btn btn-info btn-sm btn-block">Vote</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 
 {% endblock %}
-<a data-toggle="modal" href="#residentsModal" class="btn btn-default btn-lg residentsModal">Launch demo modal</a>
+
