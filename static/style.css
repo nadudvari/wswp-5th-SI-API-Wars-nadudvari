@@ -11,6 +11,11 @@
     color: white;
 }
 
+.dataTableLayout {
+    table-layout:fixed;
+    width:100%;
+}
+
 body {
     background-image: url('/static/SWBG.png');
     background-size: cover;
