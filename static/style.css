@@ -32,6 +32,7 @@ body {
 
 #pageSwap {
     margin-bottom: 15px;
+    margin-left: 15px;
 }
 
 .planetsTable {
@@ -47,8 +48,10 @@ body {
 }
 
 .btn.outline {
-	background: none;
+	background: orange;
     padding: 5px 10px;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
 .btn-default.outline {

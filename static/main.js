@@ -43,5 +43,3 @@ let main = {
 };
 
 main.init();
-
-
