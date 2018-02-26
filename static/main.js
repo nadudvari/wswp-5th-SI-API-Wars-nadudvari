@@ -8,8 +8,10 @@ let main = {
         });
     },
 
-    loadResidentsTable: function  (residents) {
+    loadResidentsTable: function  (title, residents) {
         $('.residentsModalBody').html('');
+        $('.modal-title').html('');
+        $('.modal-title').append('Residents of the planet ' + title);
         for (let resident of residents) {
             $.getJSON(resident, function (info) {
                     $('.residentsModalBody').append('<tr><td>' + info.name + '</td>' +
@@ -28,10 +30,11 @@ let main = {
     buttonsEventHandler: function  () {
         $('.residentsModal').click( function() {
             $('#residentsModal').modal('show');
+            let planetName = $(this).attr('data-planet-name');
             let planetUrl = $(this).attr('data-residents');
             $('#residentsModal').data('planet-url', planetUrl);
             $.getJSON(planetUrl, function(datas){
-                main.loadResidentsTable(datas.residents);
+                main.loadResidentsTable(planetName, datas.residents);
             })
         })
     }

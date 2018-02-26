@@ -52,7 +52,7 @@
                         <td>No known residents</td>
                     {% else %}
                         <td class="residentsData">
-                            <a class="btn btn-default btn-sm btn-block residentsModal sharp outline" id="modalText" data-residents="{{ data.url }}" role="button">
+                            <a class="btn btn-default btn-sm btn-block residentsModal sharp outline" id="modalText" data-planet-name="{{ data.name }}" data-residents="{{ data.url }}" role="button">
                                 {{ data.residents|length }} resident(s)
                             </a>
                         </td>
